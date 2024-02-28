@@ -1,7 +1,23 @@
 #include "number_operations.h"
 #include <algorithm>
+#include <string>
+
+#ifdef _WIN32
+#include <cstdlib> // Para system("cls") no Windows
+#else
+#include <unistd.h> // Para system("clear") em sistemas Unix
+#endif
 
 
+
+
+void limparTela() {
+    #ifdef _WIN32
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
+}
 
 
 int gcd(int a,int b){
@@ -44,3 +60,22 @@ int calculeD(int e, int tot){
         
     return e;
 }
+
+string decode_word(vector<int> encoded_numbers) {
+  string word;
+  for (int number : encoded_numbers) {
+    char character = static_cast<char>(number);
+    word += character;
+  }
+  return word;
+}
+
+vector<int> stringToInt(string message){
+    vector<int> form;
+    // calling the encrypting function in encoding function
+    for (auto& letter : message)
+        form.push_back(static_cast<int>(letter));
+
+    return form;
+}
+
